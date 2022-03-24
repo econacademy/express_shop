@@ -1,0 +1,5 @@
+1. homebrew 설치하기
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+2. brew 명령어 등록하기
+eval $(/opt/homebrew/bin/brew shellenv)
+3.
