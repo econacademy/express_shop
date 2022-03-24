@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/admin.css">
+    <script src="/js/admin.js" defer></script>
+    <!-- 라우터에서 무조거 public 폴더로 보내게 설정 되어 있어서 public 생략 -->
+    <title>관리자 페이지</title>
+</head>
+<body>
+    <header>
+        <h1><a href="/admin/">관리자 페이지</a></h1>
+        <nav>
+            <ul>
+                <li><a href="/admin/mem/list/1">회원</a></li>
+                <li>상품</li>
+                <li>보드</li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+<pre>
+MEMBER
++----------------+--------------+------+-----+---------+-------+
+| Field          | Type         | Null | Key | Default | Extra |
++----------------+--------------+------+-----+---------+-------+
+| ID             | varchar(255) | NO   | PRI | NULL    |       |
+| PHONE          | varchar(255) | NO   | UNI | NULL    |       |
+| EMAIL          | varchar(255) | NO   | UNI | NULL    |       |
+| NAME           | varchar(255) | NO   |     | NULL    |       |
+| ADDRESS        | varchar(255) | YES  |     | NULL    |       |
+| ADDRESS_DETAIL | varchar(255) | YES  |     | NULL    |       |
+| BIRTH          | date         | NO   |     | NULL    |       |
++----------------+--------------+------+-----+---------+-------+
++-----+---------------+---------------+--------+-------------------------------+-------------------+------------+
+| ID  | PHONE         | EMAIL         | NAME   | ADDRESS                       | ADDRESS_DETAIL    | BIRTH      |
++-----+---------------+---------------+--------+-------------------------------+-------------------+------------+
+| AAA | 010-1111-1111 | AAA@gmail.com | 길동    | 고양시 덕양구 내유동               | AAA 빌라 101호      | 1900-01-01 |
+| BBB | 010-2222-2222 | BBB@gmail.com | 영희    | 고양시 덕양구 내유동               | BBB 빌라 102호      | 1960-02-01 |
+| CCC | 010-3333-3333 | CCC@gmail.com | 수철    | 고양시 덕양구 내유동               | CCC 빌라 103호      | 2000-03-01 |
++-----+---------------+---------------+--------+-------------------------------+-------------------+------------+
+BOARD
++-------------+--------------+------+-----+-------------------+-------------------+
+| Field       | Type         | Null | Key | Default           | Extra             |
++-------------+--------------+------+-----+-------------------+-------------------+
+| NUM         | int          | NO   | PRI | NULL              | auto_increment    |
+| MEMBER_ID   | varchar(255) | NO   | MUL | NULL              |                   |
+| TITLE       | varchar(255) | NO   |     | NULL              |                   |
+| CONTENTS    | varchar(255) | YES  |     |                   |                   |
+| REGIST_TIME | datetime     | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
++-------------+--------------+------+-----+-------------------+-------------------+
++-----+-----------+----------------------------+--------------------------------+---------------------+
+| NUM | MEMBER_ID | TITLE                      | CONTENTS                       | REGIST_TIME         |
++-----+-----------+----------------------------+--------------------------------+---------------------+
+|   1 | BBB       | 2번번째글이다 와~!         | 반갑습니다. 여러분~~!!         | 2022-03-24 17:01:23 |
+|   2 | BBB       | 3번번째글이다 와~!         | 반갑습니다. 여러분~~!!         | 2022-03-24 17:01:23 |
+|   3 | BBB       | 4번번째글이다 와~!         | 반갑습니다. 여러분~~!!         | 2022-03-24 17:01:23 |
+|   4 | BBB       | 5번번째글이다 와~!         | 반갑습니다. 여러분~~!!         | 2022-03-24 17:01:23 |
+|   5 | BBB       | 6번번째글이다 와~!         | 반갑습니다. 여러분~~!!         | 2022-03-24 17:01:23 |
+|   6 | BBB       | 7번번째글이다 와~!         | 반갑습니다. 여러분~~!!         | 2022-03-24 17:01:23 |
+|   7 | BBB       | 8번번째글이다 와~!         | 반갑습니다. 여러분~~!!         | 2022-03-24 17:01:23 |
+|   8 | BBB       | 9번번째글이다 와~!         | 반갑습니다. 여러분~~!!         | 2022-03-24 17:01:23 |
+|   9 | BBB       | 10번번째글이다 와~!        | 반갑습니다. 여러분~~!!         | 2022-03-24 17:01:23 |
+|  10 | BBB       | 11번번째글이다 와~!        | 반갑습니다. 여러분~~!!         | 2022-03-24 17:01:23 |
+|  11 | BBB       | 12번번째글이다 와~!        | 반갑습니다. 여러분~~!!         | 2022-03-24 17:01:23 |
+|  12 | BBB       | 13번번째글이다 와~!        | 반갑습니다. 여러분~~!!         | 2022-03-24 17:01:23 |
+|  13 | BBB       | 14번번째글이다 와~!        | 반갑습니다. 여러분~~!!         | 2022-03-24 17:01:23 |
+|  14 | BBB       | 15번번째글이다 와~!        | 반갑습니다. 여러분~~!!         | 2022-03-24 17:01:23 |
+|  15 | BBB       | 16번번째글이다 와~!        | 반갑습니다. 여러분~~!!         | 2022-03-24 17:01:23 |
++-----+-----------+----------------------------+--------------------------------+---------------------+
+PRODUCT
++--------------+--------------+------+-----+---------+----------------+
+| Field        | Type         | Null | Key | Default | Extra          |
++--------------+--------------+------+-----+---------+----------------+
+| PRODUCT_NUM  | int          | NO   | PRI | NULL    | auto_increment |
+| NAME         | varchar(255) | NO   |     | NULL    |                |
+| TITLE        | varchar(255) | NO   |     | NULL    |                |
+| COUNT        | int          | NO   |     | NULL    |                |
+| PRICE        | int          | NO   |     | NULL    |                |
+| COLOR        | varchar(10)  | YES  |     | NULL    |                |
+| MAIN_IMG     | varchar(255) | NO   |     | NULL    |                |
+| DETAIL_IMG   | varchar(255) | YES  |     | NULL    |                |
+| MODEL_NUM    | varchar(255) | YES  |     | NULL    |                |
+| MEMBER_ID    | varchar(255) | NO   | MUL | NULL    |                |
+| CATEGORY_NUM | int          | NO   | MUL | NULL    |                |
++--------------+--------------+------+-----+---------+----------------+
+PRODUCT_COMMENT
++----------------+--------------+------+-----+-------------------+-------------------+
+| Field          | Type         | Null | Key | Default           | Extra             |
++----------------+--------------+------+-----+-------------------+-------------------+
+| COMMENT_NUM    | int          | NO   | PRI | NULL              | auto_increment    |
+| TITLE          | varchar(255) | YES  |     |                   |                   |
+| CONTENTS       | varchar(255) | YES  |     |                   |                   |
+| IMG            | varchar(255) | YES  |     | NULL              |                   |
+| REGIST_TIME    | timestamp    | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |
+| DELIVERY_GRADE | tinyint      | NO   |     | 6                 |                   |
+| PRODUCT_GRADE  | tinyint      | NO   |     | 6                 |                   |
+| SELLER_GRADE   | tinyint      | NO   |     | 6                 |                   |
+| PRODUCT_NUM    | int          | NO   | MUL | NULL              |                   |
+| MEMBER_ID      | varchar(255) | NO   | MUL | NULL              |                   |
+| VISIALBE       | tinyint(1)   | NO   |     | 1                 |                   |
++----------------+--------------+------+-----+-------------------+-------------------+
+</pre>
+    </main>
+
+</body>
+</html>
