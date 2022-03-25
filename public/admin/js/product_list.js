@@ -1,4 +1,4 @@
-//ITEM_LIST db에서 받아온 내역
+
 const productList=document.getElementById("productList");
 const productList_ex=productList.querySelector(".ex");
 ITEM_LIST.forEach((item)=>{
