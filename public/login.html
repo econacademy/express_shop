@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <title>쇼핑몰</title>
+</head>
+<body>
+    <header>
+        <iframe src="/header_nav.html" width="100%" " height="100px" frameborder="0"></iframe>
+    </header>
+    <main>
+        <form name="signIn" id="signIn" action="/sigin/in" method="post">
+            <h2>로그인</h2>
+            <p>
+                <label><input type="text" name="id" placeholder="아이디"></label>
+            </p>
+            <p>
+                <label><input type="password" name="pw" placeholder="비밀번호"></label>
+            </p>
+            <p>
+                <label for=""><button type="submit">로그인</button></label>
+            </p>
+            <p><a href="/sign/up">회원가입</a></p>
+        </form>
+    </main>
+</body>
+</html>

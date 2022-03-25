@@ -5,9 +5,8 @@ const app=express();
 //app.use() 미들웨어 :요청이 들어오면 먼저 검사를 실시하고 요청으로 보내는 것 [검문소]
 app.use(express.static("public"))
 //모든 정적리소스(css,img,js 등이 요청이 들어오면 public 폴더에서 찾아서 응답해준다/)
-
 const mysql=require("mysql");
-const { resolve } = require("path");
+
 const con_info={
     host: "localhost",
     port: 3306,
