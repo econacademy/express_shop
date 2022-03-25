@@ -68,8 +68,7 @@ function mysqlConn(){
     return new Promise((resolve)=>{
         const conn=mysql.createConnection(con_info)
         conn.connect((e)=>{
-            if(e){conn.end((e)=>{}); 
-            throw new Error("mysql 접속 에러 :"+e.message)}
+            if(e){conn.end((e)=>{}); throw new Error("mysql 접속 에러 :"+e.message)}
             resolve(conn);
         })
     })
@@ -77,8 +76,7 @@ function mysqlConn(){
 function queryResult(conn,sql,params=[]){
     return new Promise((resolve)=>{
         conn.query(sql,params,(e,result)=>{
-            if(e){conn.end((e)=>{});
-            throw new Error("query 에러 :"+e.message)}
+            if(e){conn.end((e)=>{}); throw new Error("query 에러 :"+e.message)}
             resolve(result);
         })
     });

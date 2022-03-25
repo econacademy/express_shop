@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/admin/css/product_list.css">
+    <script src="/admin/js/product_list.js" defer></script>
     <title>Document</title>
 </head>
-<body>
+<body>`
     <header>
         <iframe src="/admin/header_nav.html" width="100%" frameborder="0"></iframe>
     </header>
@@ -14,9 +16,38 @@
         <h2>상품 리스트 출력하세요!</h2>
         <table>
             <thead>
-                <tr></tr>
+                <tr>
+                    <th>CATEGORY_NUM</th>
+                    <th>COLOR</th>
+                    <th>COUNT</th>
+                    <th>DETAIL_IMG</th>
+                    <th>MAIN_IMG</th>
+                    <th>MEMBER_ID</th>
+                    <th>MODEL_NUM</th>
+                    <th>NAME</th>
+                    <th>PRICE</th>
+                    <th>PRODUCT_NUM</th>
+                    <th>TITLE</th>
+                </tr>
             </thead>
-            <tbody>     
+            <tbody id="productList">
+                <tr class="ex">
+                    <td class="CATEGORY_NUM"></td>
+                    <td class="COLOR"></td>
+                    <td class="COUNT"></td>
+                    <td>
+                        <img class="DETAIL_IMG" height="50px" src="" alt="">
+                    </td>
+                    <td>
+                        <img class="MAIN_IMG" height="50px" src="" alt="">
+                    </td>
+                    <td class="MEMBER_ID"></td>
+                    <td class="MODEL_NUM"></td>
+                    <td class="NAME"></td>
+                    <td class="PRICE"></td>
+                    <td class="PRODUCT_NUM"></td>
+                    <td class="TITLE"></td>
+                </tr>     
             </tbody>
         </table>
     </main>
