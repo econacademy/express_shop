@@ -4,6 +4,8 @@ express로 생성하는 shop 입니다.
 mysql 아이디는 root 비밀번호는 mysql 이고 로컬에서만 접속가능합니다.
 EXPRESS_SHOP_SQL.txt 를 root 계정으로 로그인한 후 붙여넣어야 db가 생성됩니다.
 로컬에 node module 로 mysql, express를 꼭 인스톨하셔야 합니다. 
+npm i mysql
+npm i express
 admin_routing.js or service_routing을 node or nodemon으로 실행해야 서버에 구동됩니다.  
 
 1.관리자 페이지 관리 (port : 1234)
@@ -23,3 +25,16 @@ admin_routing.js or service_routing을 node or nodemon으로 실행해야 서버
     post "/mem/sign/in" (파라미터 해더 본문)
     post "/mem/sign/up" (파라미터 해더 본문)
 
+big_data_21> 터미널  
+git clone https://github.com/econacademy/express_shop.git
+cd express_shop
+새터미널 =>
+npm i express
+npm i mysql
+npm i -g nodemon
+mysql -uroot -p 접속
+EXPRESS_SHOP 내용 붙여넣기
+새터미널 => nodemon admin_router.js
+
+
+브라우저에서 접속 http://localhost:1234/admin/
