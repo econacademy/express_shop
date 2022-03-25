@@ -41,10 +41,9 @@ app.get("/admin/mem/list/:page",(req,res)=>{
 // admin/product/list/:page 요청이 동적리소스
 // ./public/admin/product_list.html 정적리소스
 app.get("/admin/product/list/:page",async(req,res)=>{
-    let sql="SELECT  * FROM PRODUCT";
-    let conn=await mysqlConn();
-    let result=queryResult(conn,sql);
+    let sql="SELECT * FROM PRODUCT";
     let data=fsData("./public/admin/product_list.html");
+    let result=mysqlQuery(sql,[]);
     result=await result;
     data=await data;
     res.write(`<script>
@@ -53,8 +52,19 @@ app.get("/admin/product/list/:page",async(req,res)=>{
     </script>`);
     res.write(data);
     res.send();
-    conn.end((e)=>{})
+    // result.end((e)=>{}) = > //왜 안되는지 모르겟네;
 });
+app.get("/admin/board/list/:page",async(req,res)=>{
+    let sql="select * from board";
+    let result_board=mysqlQuery(sql,[]);
+    let data=fsData("./public/admin/board_list.html");
+    result_board =await result_board;
+    data=await data;
+    res.write(`<script>const BOARD_LIST=${JSON.stringify(result_board)};
+                       console.log(BOARD_LIST)</script>`);
+    res.write(data);
+    res.send();
+})
 app.listen(1234);
 function fsData(path){
     return new Promise((resolve)=>{
@@ -64,22 +74,22 @@ function fsData(path){
         });
     });
 }
-function mysqlConn(){
-    return new Promise((resolve)=>{
-        const conn=mysql.createConnection(con_info)
-        conn.connect((e)=>{
-            if(e){conn.end((e)=>{}); throw new Error("mysql 접속 에러 :"+e.message)}
-            resolve(conn);
+function mysqlQuery(sql,params=[]){
+    return (new Promise((resolve)=>{
+        const create_conn=mysql.createConnection(con_info)
+        create_conn.connect((e)=>{
+            if(e){create_conn.end((e)=>{}); throw new Error("mysql 접속 에러 :"+e.message)}
+            resolve(create_conn);
+        })
+    }).then((conn)=>{
+        return new Promise((resolve)=>{
+            conn.query(sql,params,(e,result)=>{
+                if(e){conn.end((e)=>{});throw new Error(e)}
+                resolve(result);
+            })
         })
     })
-}
-function queryResult(conn,sql,params=[]){
-    return new Promise((resolve)=>{
-        conn.query(sql,params,(e,result)=>{
-            if(e){conn.end((e)=>{}); throw new Error("query 에러 :"+e.message)}
-            resolve(result);
-        })
-    });
+    )
 }
 
 
