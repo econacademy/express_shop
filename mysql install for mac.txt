@@ -2,4 +2,10 @@
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 2. brew 명령어 등록하기
 eval $(/opt/homebrew/bin/brew shellenv)
-3.
+3. brew search mysql
+4. brew install mysql
+5. mysql.server start
+6. mysql -uroot
+7. use mysql;
+8. ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'mysql'
+9. flush privileges;

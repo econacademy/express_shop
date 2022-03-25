@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/admin.css">
-    <script src="/js/admin.js" defer></script>
-    <script src="/mem_list.js" defer></script>
+    <link rel="stylesheet" href="/admin/css/admin.css">
+    <link rel="stylesheet" href="/admin/css/mem_list.css">
+
+    <script src="/admin/js/mem_list.js" defer></script>
     <!-- 라우터에서 무조거 public 폴더로 보내게 설정 되어 있어서 public 생략 -->
     <title>관리자 페이지</title>
 </head>
@@ -22,7 +23,23 @@
         </nav>
     </header>
     <main>
+        <table style="width: 100%;">
+            <thead>
+                <tr>
+                    <th>ADDRESS</th>
+                    <th>ADDRESS_DETAIL</th>
+                    <th>BIRTH</th>
+                    <th>EMAIL</th>
+                    <th>ID</th>
+                    <th>NAME</th>
+                    <th>PHONE</th>
+                    <th>수정</th>
+                </tr>
+            </thead>
+            <tbody id="memList">
 
+            </tbody>
+        </table>
     </main>
 </body>
 </html>
