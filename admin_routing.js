@@ -7,6 +7,7 @@ app.use(express.static("public"))
 //모든 정적리소스(css,img,js 등이 요청이 들어오면 public 폴더에서 찾아서 응답해준다/)
 
 const mysql=require("mysql");
+const { resolve } = require("path");
 const con_info={
     host: "localhost",
     port: 3306,
@@ -39,31 +40,48 @@ app.get("/admin/mem/list/:page",(req,res)=>{
 })
 // admin/product/list/:page 요청이 동적리소스
 // ./public/admin/product_list.html 정적리소스
-app.get("/admin/product/list/:page",(req,res)=>{
-    fs.readFile("./public/admin/product_list.html",(e,data)=>{
-        if(e){console.log(e.message);}
-        let mysqlConnPromise=mysqlConn();
-        mysqlConnPromise.
-        then((conn)=>{
-            return new Promise((resolve)=>{
-                conn.query("SELECT * FROM PRODUCT",(e,result)=>{
-                    resolve(result);   
-                })
-            })
-        })
-        .then((result)=>{
-            console.log(result);
-        })
-    })
+app.get("/admin/product/list/:page",async(req,res)=>{
+    let sql="SELECT  * FROM PRODUCT";
+    let conn=await mysqlConn();
+    let result=queryResult(conn,sql);
+    let data=fsData("./public/admin/product_list.html");
+    result=await result;
+    data=await data;
+    res.write(`<script>
+    const ITEM_LIST=${JSON.stringify(result)};
+    console.log(ITEM_LIST);
+    </script>`);
+    res.write(data);
+    res.send();
+    conn.end((e)=>{})
 });
 app.listen(1234);
+function fsData(path){
+    return new Promise((resolve)=>{
+        fs.readFile(path,(e,data)=>{
+            if(e){console.log(e.message); data="<h1>404파일없음</h1>"}
+            resolve(data);
+        });
+    });
+}
 function mysqlConn(){
     return new Promise((resolve)=>{
         const conn=mysql.createConnection(con_info)
         conn.connect((e)=>{
+            if(e){conn.end((e)=>{}); 
+            throw new Error("mysql 접속 에러 :"+e.message)}
             resolve(conn);
         })
     })
+}
+function queryResult(conn,sql,params=[]){
+    return new Promise((resolve)=>{
+        conn.query(sql,params,(e,result)=>{
+            if(e){conn.end((e)=>{});
+            throw new Error("query 에러 :"+e.message)}
+            resolve(result);
+        })
+    });
 }
 
 
