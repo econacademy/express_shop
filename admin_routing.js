@@ -43,10 +43,16 @@ app.get("/admin/product/list/:page",(req,res)=>{
     fs.readFile("./public/admin/product_list.html",(e,data)=>{
         if(e){console.log(e.message);}
         let mysqlConnPromise=mysqlConn();
-        mysqlConnPromise.then((conn)=>{
-            conn.query("SELECT * FROM PRODUCT",(e,result)=>{
-                console.log(result);
+        mysqlConnPromise.
+        then((conn)=>{
+            return new Promise((resolve)=>{
+                conn.query("SELECT * FROM PRODUCT",(e,result)=>{
+                    resolve(result);   
+                })
             })
+        })
+        .then((result)=>{
+            console.log(result);
         })
     })
 });
